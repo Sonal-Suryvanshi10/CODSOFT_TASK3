@@ -126,13 +126,17 @@ cd your-repository-name
 
 cp .env.example .env
 
-4. Build the site with Node.js:
+4. Start the local website:
 
-node build.mjs
+node serve.mjs
 
-5. Open `dist/index.html` in your browser or serve the `dist` directory with VS Code Live Server.
+Open the printed local URL in your browser. The server rebuilds `dist` from `.env` each time it starts. Do not open `PERSONAL-PORTFOLIO-WEBSITE/index.html` directly or use Live Server on that source folder: browsers cannot read `.env`, so the form and certificate links will not be configured.
 
-For Cloudflare Workers Builds, set the same five variables as build environment variables, run `node build.mjs`, and deploy `dist` as the static assets directory. Do not commit `.env` or `dist`.
+For Cloudflare Workers, the deployed site must also be built from `dist`.
+
+To deploy from Cloudflare Workers Builds, set these five build environment variables in the Cloudflare dashboard (`FORMSPREE_ENDPOINT`, `CONTACT_EMAIL`, `CERT_JAVASCRIPT_URL`, `CERT_GENERATIVE_AI_URL`, and `CERT_ENGLISH_IT_URL`), use `node build.mjs` as the build command, and `npx wrangler deploy` as the deploy command. The included `wrangler.jsonc` points the Worker to the generated `dist` assets. For local deployment, `node build.mjs` reads the ignored `.env`, then run `npx wrangler deploy`.
+
+Do not commit `.env` or `dist`.
 
 The generated browser files necessarily contain the Formspree endpoint and certificate URLs so the contact form and certificate links work. This keeps them out of the GitHub source, but does not hide them from people inspecting the public website.
 
