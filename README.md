@@ -116,11 +116,11 @@ Cross-Screen Optimization	✅
 
 1. Clone the repository:
 
-git clone https://github.com/Sonal-Suryvanshi10/your-repository-name.git
+git clone https://github.com/Sonal-Suryvanshi10/CODESOFT_TASK3.git
 
 2. Open the project folder:
 
-cd your-repository-name
+cd CODESOFT_TASK3
 
 3. Copy `.env.example` to `.env` and set the Formspree endpoint, contact email, and certificate URLs:
 
@@ -132,9 +132,11 @@ node serve.mjs
 
 Open the printed local URL in your browser. The server rebuilds `dist` from `.env` each time it starts. Do not open `PERSONAL-PORTFOLIO-WEBSITE/index.html` directly or use Live Server on that source folder: browsers cannot read `.env`, so the form and certificate links will not be configured.
 
-For Cloudflare Workers, the deployed site must also be built from `dist`.
+For Render, set the Static Site **Build Command** to `node build.mjs` and **Publish Directory** to `dist`. Before deploying, add the five variables below in the Render dashboard under the service's **Environment** settings. The included `render.yaml` stores the build and publish settings for Blueprint-based deployments; existing dashboard-created services may need their settings updated manually.
 
-To deploy from Cloudflare Workers Builds, set these five build environment variables in the Cloudflare dashboard (`FORMSPREE_ENDPOINT`, `CONTACT_EMAIL`, `CERT_JAVASCRIPT_URL`, `CERT_GENERATIVE_AI_URL`, and `CERT_ENGLISH_IT_URL`), use `node build.mjs` as the build command, and `npx wrangler deploy` as the deploy command. The included `wrangler.jsonc` points the Worker to the generated `dist` assets. For local deployment, `node build.mjs` reads the ignored `.env`, then run `npx wrangler deploy`.
+Set these five build environment variables in Render/Cloudflare: `FORMSPREE_ENDPOINT`, `CONTACT_EMAIL`, `CERT_JAVASCRIPT_URL`, `CERT_GENERATIVE_AI_URL`, and `CERT_ENGLISH_IT_URL`.
+
+For Cloudflare Workers Builds, use `node build.mjs` as the build command and `npx wrangler deploy` as the deploy command. The included `wrangler.jsonc` points the Worker to the generated `dist` assets. For local deployment, `node build.mjs` reads the ignored `.env`, then run `npx wrangler deploy`.
 
 Do not commit `.env` or `dist`.
 
