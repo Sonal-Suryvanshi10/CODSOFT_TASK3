@@ -1,0 +1,1 @@
+window.portfolioConfig = Object.freeze({});

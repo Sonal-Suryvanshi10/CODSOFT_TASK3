@@ -70,7 +70,7 @@
     <a href="https://x.com/sonalcse132" class="home__social-link" target="_blank" rel="noopener noreferrer">
         <i class="fa-brands fa-x-twitter"></i>
     </a>
-    <a href="mailto:sonalcse132@gmail.com" class="home__social-link">
+    <a data-email-link class="home__social-link">
         <i class="fas fa-envelope"></i>
     </a>
 </div>
@@ -122,7 +122,7 @@
                         <div class="about__info">
                             <div><i class="fas fa-graduation-cap"></i> B.Tech CSE · 2026</div>
                             <div><i class="fas fa-map-pin"></i> Vijay Nagar, Indore (MP)</div>
-                            <div><i class="fas fa-envelope"></i> sonalcse132@gmail.com</div>
+                            <div><i class="fas fa-envelope"></i> sonalsuryvanshi95 </div>
                             <!-- <div><i class="fas fa-phone"></i> </div> -->
                         </div>
                         <a href="#contact" class="btn btn-primary about__btn">
@@ -321,17 +321,17 @@
                             <div class="resume__item">
                                 <h4>JavaScript</h4>
                                 <p>Cisco</p>
-                                <a href="https://drive.google.com/file/d/1QE9gKXOykDLF7bqyn3RfjwrWYso8oECy/view?usp=drive_link" class="resume__cert-link">View Certificate <i class="fas fa-external-link-alt"></i></a>
+                                <a data-certificate="javascript" class="resume__cert-link">View Certificate <i class="fas fa-external-link-alt"></i></a>
                             </div>
                             <div class="resume__item">
                                 <h4>Generative AI</h4>
                                 <p>Infosys Springboard</p>
-                                <a href="https://drive.google.com/file/d/1JNwu9xZYiFikXGvxO3_WWPHO39IU7tdD/view?usp=drive_link" class="resume__cert-link">View Certificate <i class="fas fa-external-link-alt"></i></a>
+                                <a data-certificate="generativeAi" class="resume__cert-link">View Certificate <i class="fas fa-external-link-alt"></i></a>
                             </div>
                             <div class="resume__item">
                                 <h4>English for IT</h4>
                                 <p>Cisco</p>
-                                <a href="https://drive.google.com/file/d/1fRnLGlqL1gdFsYpl7mxMdGGJl29bjyJu/view?usp=drive_link" class="resume__cert-link">View Certificate <i class="fas fa-external-link-alt"></i></a>
+                                <a data-certificate="englishIt" class="resume__cert-link">View Certificate <i class="fas fa-external-link-alt"></i></a>
                             </div>
                             <div class="resume__item">
                                 <h4>Full Stack Development</h4>
@@ -361,12 +361,12 @@
                 <p>I'm always open to new opportunities, collaborations, or just a friendly chat. Feel free to reach out!</p>
                 <div><i class="fas fa-map-marker-alt"></i> Vijay Nagar, Indore (MP)</div>
                 <!-- <div><i class="fas fa-phone-alt"></i> </div> -->
-                <div><i class="fas fa-envelope"></i> sonalcse132@gmail.com</div>
+                <div><i class="fas fa-envelope"></i> <span data-contact-email></span></div>
                 <div class="contact__socials">
                     <a href="https://www.linkedin.com/in/sonal-suryvanshi-45a400335" target="_blank"><i class="fab fa-linkedin-in"></i></a>
                     <a href="https://github.com/Sonal-Suryvanshi10" target="_blank"><i class="fab fa-github"></i></a>
                     <a href="https://x.com/sonalcse132" target="_blank"><i class="fa-brands fa-x-twitter"></i></a>
-                    <a href="mailto:sonalcse132@gmail.com"><i class="fas fa-envelope"></i></a>
+                    <a data-email-link><i class="fas fa-envelope"></i></a>
                 </div>
             </div>
 
@@ -375,7 +375,7 @@
                 <h3>Send a Message</h3>
                 <p>Fill out the form below, and I'll get back to you as soon as possible.</p>
 
-                <form class="contact__form" id="contactForm" action="https://formspree.io/f/mwleyqva" method="POST">
+                <form class="contact__form" id="contactForm" method="POST">
                     <div class="form-group">
                         <input type="text" name="name" id="name" placeholder="Your Full Name" required />
                     </div>
@@ -425,6 +425,7 @@
 
     <!-- ===== SCRIPTS ===== -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js"></script>
+    <script src="config.js"></script>
     <script src="script.js"></script>
 </body>
 </html>

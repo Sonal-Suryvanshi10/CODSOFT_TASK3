@@ -122,29 +122,43 @@ git clone https://github.com/Sonal-Suryvanshi10/your-repository-name.git
 
 cd your-repository-name
 
-3. Open index.html in your browser.
+3. Copy `.env.example` to `.env` and set the Formspree endpoint, contact email, and certificate URLs:
 
-Alternatively, use VS Code Live Server to run the project locally.
+cp .env.example .env
+
+4. Build the site with Node.js:
+
+node build.mjs
+
+5. Open `dist/index.html` in your browser or serve the `dist` directory with VS Code Live Server.
+
+For Cloudflare Workers Builds, set the same five variables as build environment variables, run `node build.mjs`, and deploy `dist` as the static assets directory. Do not commit `.env` or `dist`.
+
+The generated browser files necessarily contain the Formspree endpoint and certificate URLs so the contact form and certificate links work. This keeps them out of the GitHub source, but does not hide them from people inspecting the public website.
 
 📁 Project Structure
 
-Personal-Portfolio/
+Repository/
 │
-├── index.html
-├── style.css
-├── script.js
-├── ProfilePic.jpeg
-├── weatherCast.png
-├── ExpenceWeb.png
-├── musicWeb.png
-├── Sonal_Resume.pdf
+├── .env.example
+├── build.mjs
+├── PERSONAL-PORTFOLIO-WEBSITE/
+│   ├── index.html
+│   ├── style.css
+│   ├── script.js
+│   ├── config.js
+│   ├── ProfilePic.jpeg
+│   ├── weatherCast.png
+│   ├── ExpenceWeb.png
+│   ├── musicWeb.png
+│   └── Sonal_Resume.pdf
 └── README.md
 
 📬 Contact
 
 Sonal Suryvanshi
 
-* 📧 Email: sonalcse132@gmail.com
+* 📧 Email: Set through `CONTACT_EMAIL` in `.env`
 * 💼 LinkedIn: Sonal Suryvanshi
 * 🐙 GitHub: Sonal-Suryvanshi10
 * 𝕏 X: @sonalcse132

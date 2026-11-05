@@ -120,8 +120,32 @@ window.addEventListener('load', () => {
 // ===== CONTACT FORM VALIDATION =====
 const contactForm = document.getElementById('contactForm');
 const formMessage = document.getElementById('formMessage');
+const portfolioConfig = window.portfolioConfig || {};
+
+document.querySelectorAll('[data-contact-email]').forEach(element => {
+    element.textContent = portfolioConfig.contactEmail || '';
+});
+
+document.querySelectorAll('[data-email-link]').forEach(link => {
+    if (portfolioConfig.contactEmail) {
+        link.href = `mailto:${portfolioConfig.contactEmail}`;
+    }
+});
+
+document.querySelectorAll('[data-certificate]').forEach(link => {
+    const certificateUrl = portfolioConfig.certificates?.[link.dataset.certificate];
+    if (certificateUrl) {
+        link.href = certificateUrl;
+        link.target = '_blank';
+        link.rel = 'noopener noreferrer';
+    }
+});
 
 if (contactForm) {
+    if (portfolioConfig.formspreeEndpoint) {
+        contactForm.action = portfolioConfig.formspreeEndpoint;
+    }
+
     contactForm.addEventListener('submit', function(e) {
         e.preventDefault();
 
@@ -151,12 +175,17 @@ if (contactForm) {
             return;
         }
 
+        if (!portfolioConfig.formspreeEndpoint) {
+            showMessage('❌ Contact form is not configured. Please try again later.', 'error');
+            return;
+        }
+
         showMessage('⏳ Sending your message...', 'success');
 
         const formData = new FormData(contactForm);
 
         // ✅ Formspree pe send karein
-        fetch('https://formspree.io/f/mwleyqva', {
+        fetch(portfolioConfig.formspreeEndpoint, {
             method: 'POST',
             body: formData,
             headers: {
@@ -230,15 +259,13 @@ if (resumeBtn) {
     resumeBtn.addEventListener('click', function(e) {
         e.preventDefault();
         
-        // ✅ Resume download karne ke liye
-        // Apni PDF file ka naam sahi rakhein
+        // ✅ resume dounload
+    
         const pdfUrl = 'Sonal_Resume.pdf';
         
-        // Check karein ki file exist karti hai ya nahi
         fetch(pdfUrl)
             .then(response => {
                 if (response.ok) {
-                    // ✅ File exist karti hai - download karein
                     const link = document.createElement('a');
                     link.href = pdfUrl;
                     link.download = 'Sonal_Resume.pdf';
@@ -247,7 +274,6 @@ if (resumeBtn) {
                     document.body.removeChild(link);
                     showNotification('📄 Download started!');
                 } else {
-                    // ❌ File nahi mili
                     showNotification('❌ Resume file not found! Please add Sonal_Resume.pdf to your folder.', 'error');
                 }
             })
@@ -258,10 +284,10 @@ if (resumeBtn) {
 }
 
 // ===== PROJECT LINKS =====
-// ✅ Social links ab kaam karenge - kuch block nahi karna
+
 
 // ===== CERTIFICATE LINKS =====
-// ✅ Certificate links ab kaam karenge - kuch block nahi karna
+
 
 // ===== NOTIFICATION =====
 function showNotification(msg, type) {
