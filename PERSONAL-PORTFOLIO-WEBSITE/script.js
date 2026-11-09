@@ -1,33 +1,37 @@
-// ===== AOS INITIALIZATION =====
-AOS.init({
-    duration: 1000,
-    once: true,
-    offset: 100,
-    disable: 'mobile'
-});
-
 // ===== MOBILE NAVIGATION =====
 const navToggle = document.getElementById('nav-toggle');
 const navClose = document.getElementById('nav-close');
 const navMenu = document.getElementById('nav-menu');
 const navLinks = document.querySelectorAll('.nav__link');
 
+const setNavMenuOpen = (isOpen) => {
+    navMenu.classList.toggle('active', isOpen);
+    navToggle.setAttribute('aria-expanded', String(isOpen));
+};
+
 if (navToggle) {
     navToggle.addEventListener('click', () => {
-        navMenu.classList.add('active');
+        setNavMenuOpen(true);
     });
 }
 
 if (navClose) {
     navClose.addEventListener('click', () => {
-        navMenu.classList.remove('active');
+        setNavMenuOpen(false);
     });
 }
 
 navLinks.forEach(link => {
     link.addEventListener('click', () => {
-        navMenu.classList.remove('active');
+        setNavMenuOpen(false);
     });
+});
+
+document.addEventListener('keydown', event => {
+    if (event.key === 'Escape' && navMenu.classList.contains('active')) {
+        setNavMenuOpen(false);
+        navToggle.focus();
+    }
 });
 
 // ===== ACTIVE NAV LINK ON SCROLL =====
